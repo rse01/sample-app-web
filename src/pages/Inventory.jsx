@@ -13,6 +13,7 @@ import { sortAsc, sortDesc, sortHiLo, sortLoHi } from "../utils/Sorting";
 import Select from "../components/Select";
 import "./Inventory.css";
 import { BacktraceClient } from "@backtrace/react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const Inventory = ({ data }) => {
   const InventoryData = data;
@@ -20,6 +21,7 @@ const Inventory = ({ data }) => {
     sortAsc(InventoryData, "name"),
   );
   const [activeOption, setActiveOption] = useState("az");
+  const { t } = useTranslation();
   /* istanbul ignore next */
   const startPerformanceGlitch = (duration) => {
     const start = new Date().getTime();
@@ -83,16 +85,16 @@ const Inventory = ({ data }) => {
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
         <HeaderContainer
-          secondaryTitle="Products"
+          secondaryTitle={t("products.title")}
           secondaryRightComponent={
             <Select
               activeOption={activeOption}
-              ariaLabel="Sort products"
+              ariaLabel={t("products.sort")}
               options={[
-                { key: "az", value: "Name (A to Z)" },
-                { key: "za", value: "Name (Z to A)" },
-                { key: "lohi", value: "Price (low to high)" },
-                { key: "hilo", value: "Price (high to low)" },
+                { key: "az", value: t("products.nameAsc") },
+                { key: "za", value: t("products.nameDesc") },
+                { key: "lohi", value: t("products.priceAsc") },
+                { key: "hilo", value: t("products.priceDesc") },
               ]}
               onChange={sortByOption}
               testId="product-sort-container"

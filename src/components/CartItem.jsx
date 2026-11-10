@@ -6,9 +6,11 @@ import { ROUTES } from "../utils/Constants";
 import { ShoppingCart } from "../utils/shopping-cart";
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from "./Button";
 import "./CartItem.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const CartItem = ({ item = undefined, history, showButton = false }) => {
   const [itemVisible, setItemVisible] = useState(true);
+  const { t } = useTranslation();
 
   const removeFromCart = (itemId) => {
     ShoppingCart.removeItem(itemId);
@@ -43,7 +45,7 @@ const CartItem = ({ item = undefined, history, showButton = false }) => {
           }}
           data-test={`item-${id}-title-link`}
           role="button"
-          aria-label={`View details for ${name}`}
+          aria-label={t("product.details", { name })}
         >
           <div className="inventory_item_name" data-test="inventory-item-name">
             {name}
@@ -62,7 +64,7 @@ const CartItem = ({ item = undefined, history, showButton = false }) => {
           {showButton && (
             <Button
               customClass="cart_button"
-              label="Remove"
+              label={t("product.remove")}
               testId={`remove-${name.replace(/\s+/g, "-").toLowerCase()}`}
               onClick={() => removeFromCart(id)}
               size={BUTTON_SIZES.SMALL}

@@ -7,10 +7,12 @@ import PropTypes from "prop-types";
 import Button, { BUTTON_SIZES } from "../components/Button";
 import { ROUTES } from "../utils/Constants";
 import "./Finish.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const Finish = ({ history, location }) => {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const order = location?.state?.order;
+  const { t } = useTranslation();
 
   const generatePdfOrder = async () => {
     setIsGeneratingPdf(true);
@@ -43,7 +45,7 @@ const Finish = ({ history, location }) => {
   return (
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
-        <HeaderContainer secondaryTitle="Checkout: Complete!" />
+        <HeaderContainer secondaryTitle={t("checkout.complete")} />
         <div
           id="checkout_complete_container"
           className="checkout_complete_container"
@@ -51,21 +53,20 @@ const Finish = ({ history, location }) => {
           role="main"
         >
           <img
-            alt="Pony Express"
+            alt={t("finish.ponyExpress")}
             className="pony_express"
             src={Checkmark}
             data-test="pony-express"
           />
           <h2 className="complete-header" data-test="complete-header">
-            Thank you for your order!
+            {t("finish.thanks")}
           </h2>
           <div className="complete-text" data-test="complete-text">
-            Your order has been dispatched, and will arrive just as fast as the
-            pony can get there!
+            {t("finish.message")}
           </div>
           <div className="complete-buttons">
             <Button
-              label="Back Home"
+              label={t("finish.backHome")}
               onClick={() => history.push(ROUTES.INVENTORY)}
               size={BUTTON_SIZES.SMALL}
               testId="back-to-products"
@@ -73,7 +74,9 @@ const Finish = ({ history, location }) => {
             {order && (
               <Button
                 customClass="generate-pdf-button"
-                label={isGeneratingPdf ? "Generating..." : "Generate PDF order"}
+                label={t(
+                  isGeneratingPdf ? "finish.generating" : "finish.generatePdf",
+                )}
                 onClick={generatePdfOrder}
                 size={BUTTON_SIZES.SMALL}
                 testId="generate-pdf-order"

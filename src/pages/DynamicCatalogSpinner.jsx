@@ -4,6 +4,7 @@ import SwagLabsFooter from "../components/Footer";
 import DynamicCatalogItemCard from "../components/DynamicCatalogItemCard";
 import { InventoryData } from "../utils/InventoryData";
 import "./DynamicCatalogSpinner.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export const MIN_SPINNER_DELAY_MS = 500;
 export const MAX_SPINNER_DELAY_MS = 3000;
@@ -17,6 +18,7 @@ export function getRandomSpinnerDelay() {
 
 const DynamicCatalogSpinner = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,7 +31,7 @@ const DynamicCatalogSpinner = () => {
   return (
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
-        <HeaderContainer secondaryTitle="Dynamic Catalog - Spinner" />
+        <HeaderContainer secondaryTitle={t("catalog.spinner")} />
         <div
           className="dynamic_catalog_spinner_container"
           data-test="dynamic-catalog-spinner-container"
@@ -39,7 +41,7 @@ const DynamicCatalogSpinner = () => {
               className="dynamic_catalog_spinner"
               data-test="dynamic-catalog-spinner"
               role="status"
-              aria-label="Loading"
+              aria-label={t("catalog.loading")}
             />
           ) : (
             <div

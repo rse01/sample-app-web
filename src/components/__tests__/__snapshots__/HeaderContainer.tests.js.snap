@@ -145,8 +145,36 @@ exports[`HeaderContainer should render for a visual user 1`] = `
         <div
           class="app_logo"
         >
-          Swag Labs
+          Niort Swag Labs
         </div>
+      </div>
+      <div
+        class="language_toggle_container"
+      >
+        <button
+          aria-label="Switch to French"
+          class="language_toggle"
+          data-test="language-toggle"
+          title="Switch to French"
+          type="button"
+        >
+          <span
+            class="active"
+          >
+            EN
+          </span>
+          <span
+            aria-hidden="true"
+            class="language_toggle_separator"
+          >
+            /
+          </span>
+          <span
+            class=""
+          >
+            FR
+          </span>
+        </button>
       </div>
       <div
         class="shopping_cart_container visual_failure"
@@ -313,8 +341,36 @@ exports[`HeaderContainer should render with all props 1`] = `
         <div
           class="app_logo"
         >
-          Swag Labs
+          Niort Swag Labs
         </div>
+      </div>
+      <div
+        class="language_toggle_container"
+      >
+        <button
+          aria-label="Switch to French"
+          class="language_toggle"
+          data-test="language-toggle"
+          title="Switch to French"
+          type="button"
+        >
+          <span
+            class="active"
+          >
+            EN
+          </span>
+          <span
+            aria-hidden="true"
+            class="language_toggle_separator"
+          >
+            /
+          </span>
+          <span
+            class=""
+          >
+            FR
+          </span>
+        </button>
       </div>
       <div
         class="shopping_cart_container visual_failure"
@@ -502,8 +558,36 @@ exports[`HeaderContainer should render without any props 1`] = `
         <div
           class="app_logo"
         >
-          Swag Labs
+          Niort Swag Labs
         </div>
+      </div>
+      <div
+        class="language_toggle_container"
+      >
+        <button
+          aria-label="Switch to French"
+          class="language_toggle"
+          data-test="language-toggle"
+          title="Switch to French"
+          type="button"
+        >
+          <span
+            class="active"
+          >
+            EN
+          </span>
+          <span
+            aria-hidden="true"
+            class="language_toggle_separator"
+          >
+            /
+          </span>
+          <span
+            class=""
+          >
+            FR
+          </span>
+        </button>
       </div>
       <div
         class="shopping_cart_container"

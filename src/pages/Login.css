@@ -11,6 +11,11 @@
   text-align: center;
   padding: 30px 0;
 }
+.login_language_toggle {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
 .login_wrapper {
   margin: 0px auto;
 }

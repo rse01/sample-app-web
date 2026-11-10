@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./HeaderContainer.css";
 import DrawerMenu from "./DrawerMenu";
 import CartButton from "./CartButton";
+import LanguageToggle from "./LanguageToggle";
 import { isVisualUser } from "../utils/Credentials";
 
 const HeaderContainer = ({
@@ -63,7 +64,10 @@ const HeaderContainer = ({
           <DrawerMenu />
         </div>
         <div className="header_label">
-          <div className="app_logo">Swag Labs</div>
+          <div className="app_logo">Niort Swag Labs</div>
+        </div>
+        <div className="language_toggle_container">
+          <LanguageToggle />
         </div>
         <div
           id="shopping_cart_container"
