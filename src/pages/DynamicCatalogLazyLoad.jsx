@@ -4,6 +4,7 @@ import SwagLabsFooter from "../components/Footer";
 import LazyCatalogCard from "../components/LazyCatalogCard";
 import { InventoryDataLong } from "../utils/InventoryDataLong";
 import "./DynamicCatalogLazyLoad.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export const INITIAL_VISIBLE_COUNT = 6;
 export const LOAD_MORE_BATCH_SIZE = 6;
@@ -11,6 +12,7 @@ export const LOAD_MORE_BATCH_SIZE = 6;
 const DynamicCatalogLazyLoad = () => {
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
   const sentinelRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,7 +39,7 @@ const DynamicCatalogLazyLoad = () => {
   return (
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
-        <HeaderContainer secondaryTitle="Dynamic Catalog - Lazy Load" />
+        <HeaderContainer secondaryTitle={t("catalog.lazyLoad")} />
         <div
           className="dynamic_catalog_lazy_load_container"
           data-test="dynamic-catalog-lazy-load-container"

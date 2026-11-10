@@ -155,6 +155,34 @@ exports[`InventoryItem should render with BrokenComponent for an error user 1`] 
             </div>
           </div>
           <div
+            class="language_toggle_container"
+          >
+            <button
+              aria-label="Switch to French"
+              class="language_toggle"
+              data-test="language-toggle"
+              title="Switch to French"
+              type="button"
+            >
+              <span
+                class="active"
+              >
+                EN
+              </span>
+              <span
+                aria-hidden="true"
+                class="language_toggle_separator"
+              >
+                /
+              </span>
+              <span
+                class=""
+              >
+                FR
+              </span>
+            </button>
+          </div>
+          <div
             class="shopping_cart_container"
             id="shopping_cart_container"
           >
@@ -453,6 +481,34 @@ exports[`InventoryItem should render with default props 1`] = `
             >
               Swag Labs
             </div>
+          </div>
+          <div
+            class="language_toggle_container"
+          >
+            <button
+              aria-label="Switch to French"
+              class="language_toggle"
+              data-test="language-toggle"
+              title="Switch to French"
+              type="button"
+            >
+              <span
+                class="active"
+              >
+                EN
+              </span>
+              <span
+                aria-hidden="true"
+                class="language_toggle_separator"
+              >
+                /
+              </span>
+              <span
+                class=""
+              >
+                FR
+              </span>
+            </button>
           </div>
           <div
             class="shopping_cart_container"
@@ -755,6 +811,34 @@ exports[`InventoryItem should render with error data if a not known product is o
             </div>
           </div>
           <div
+            class="language_toggle_container"
+          >
+            <button
+              aria-label="Switch to French"
+              class="language_toggle"
+              data-test="language-toggle"
+              title="Switch to French"
+              type="button"
+            >
+              <span
+                class="active"
+              >
+                EN
+              </span>
+              <span
+                aria-hidden="true"
+                class="language_toggle_separator"
+              >
+                /
+              </span>
+              <span
+                class=""
+              >
+                FR
+              </span>
+            </button>
+          </div>
+          <div
             class="shopping_cart_container"
             id="shopping_cart_container"
           >
@@ -824,11 +908,7 @@ exports[`InventoryItem should render with error data if a not known product is o
                 class="inventory_details_desc large_size"
                 data-test="inventory-item-desc"
               >
-                We're sorry, but your call could not be completed as dialled.
-          Please check your number, and try your call again.
-          If you are in need of assistance, please dial 0 to be connected with an operator.
-          This is a recording.
-          4 T 1.
+                We're sorry, but your call could not be completed as dialled. Please check your number, and try your call again.
               </div>
               <div
                 class="inventory_details_price"

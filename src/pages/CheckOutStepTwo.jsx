@@ -11,8 +11,10 @@ import SwagLabsFooter from "../components/Footer";
 import HeaderContainer from "../components/HeaderContainer";
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from "../components/Button";
 import "./CheckOutStepTwo.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const CheckOutStepTwo = ({ history, location }) => {
+  const { t } = useTranslation();
   const clearCart = () => {
     /* istanbul ignore else */
     // No cart clear on order complete for the problem user
@@ -36,7 +38,7 @@ const CheckOutStepTwo = ({ history, location }) => {
   return (
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
-        <HeaderContainer secondaryTitle="Checkout: Overview" />
+        <HeaderContainer secondaryTitle={t("checkout.overview")} />
         <div
           id="checkout_summary_container"
           className="checkout_summary_container"
@@ -49,10 +51,10 @@ const CheckOutStepTwo = ({ history, location }) => {
                 className="cart_quantity_label"
                 data-test="cart-quantity-label"
               >
-                QTY
+                {t("cart.quantity")}
               </div>
               <div className="cart_desc_label" data-test="cart-desc-label">
-                Description
+                {t("cart.description")}
               </div>
               {contents.map((item, i) => {
                 return <CartItem key={i} item={InventoryData[item]} />;
@@ -63,7 +65,7 @@ const CheckOutStepTwo = ({ history, location }) => {
                 className="summary_info_label"
                 data-test="payment-info-label"
               >
-                Payment Information:
+                {t("checkout.payment")}
               </div>
               <div
                 className="summary_value_label"
@@ -75,35 +77,35 @@ const CheckOutStepTwo = ({ history, location }) => {
                 className="summary_info_label"
                 data-test="shipping-info-label"
               >
-                Shipping Information:
+                {t("checkout.shipping")}
               </div>
               <div
                 className="summary_value_label"
                 data-test="shipping-info-value"
               >
-                Free Pony Express Delivery!
+                {t("checkout.delivery")}
               </div>
               <div className="summary_info_label" data-test="total-info-label">
-                Price Total
+                {t("checkout.priceTotal")}
               </div>
               <div
                 className="summary_subtotal_label"
                 data-test="subtotal-label"
               >
-                Item total: ${orderTotal}
+                {t("checkout.itemTotal", { total: orderTotal })}
               </div>
               <div className="summary_tax_label" data-test="tax-label">
-                Tax: ${orderTax}
+                {t("checkout.tax", { total: orderTax })}
               </div>
               <div className="summary_total_label" data-test="total-label">
-                Total: ${orderGrandTotal}
+                {t("checkout.total", { total: orderGrandTotal })}
               </div>
               <div className="cart_footer">
                 <Button
                   // `cart_cancel_link` has no style function
                   // but is there for backwards compatibility
                   customClass="cart_cancel_link"
-                  label="Cancel"
+                  label={t("checkout.cancel")}
                   onClick={(evt) => {
                     evt.preventDefault();
                     history.push(ROUTES.INVENTORY);
@@ -114,7 +116,7 @@ const CheckOutStepTwo = ({ history, location }) => {
                 />
                 <Button
                   customClass="cart_button"
-                  label="Finish"
+                  label={t("checkout.finish")}
                   onClick={(evt) => {
                     evt.preventDefault();
                     const order = {
@@ -126,7 +128,9 @@ const CheckOutStepTwo = ({ history, location }) => {
                       orderDate: new Date().toISOString(),
                     };
                     clearCart();
-                    history.push(ROUTES.CHECKOUT_COMPLETE, { state: { order } });
+                    history.push(ROUTES.CHECKOUT_COMPLETE, {
+                      state: { order },
+                    });
                   }}
                   size={BUTTON_SIZES.MEDIUM}
                   testId="finish"

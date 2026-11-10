@@ -28,14 +28,13 @@ describe("DrawerMenu", () => {
     isVisualUserSpy.mockClear();
   });
 
-  it("should render return an incorrect about link for a problem user", () => {
-    const isProblemUserSpy = jest.spyOn(Credentials, "isProblemUser");
-    isProblemUserSpy.mockReturnValue(true);
+  it("should render the about link as disabled", () => {
     const { getByTestId } = render(<DrawerMenu.WrappedComponent {...props} />);
-    expect(getByTestId("about-sidebar-link").getAttribute("href")).toEqual(
-      "https://saucelabs.com/error/404",
+    expect(getByTestId("about-sidebar-link")).toHaveAttribute(
+      "aria-disabled",
+      "true",
     );
-    isProblemUserSpy.mockClear();
+    expect(getByTestId("about-sidebar-link")).not.toHaveAttribute("href");
   });
 
   it("should be able to redirect to the inventory page when clicking on the all items link", () => {

@@ -19,6 +19,7 @@ import { currentUser } from "./utils/Credentials";
 import { ShoppingCart } from "./utils/shopping-cart";
 import { InventoryData } from "./utils/InventoryData.js";
 import { InventoryDataLong } from "./utils/InventoryDataLong.js";
+import { LanguageProvider } from "./i18n/LanguageContext";
 
 BacktraceClient.initialize({
   name: "Swag Store",
@@ -32,59 +33,61 @@ BacktraceClient.initialize({
 
 const routing = (
   <ErrorBoundary>
-    <Router>
-      <Routes>
-        <Route path={ROUTES.LOGIN} element={<Login />} />
-        <Route
-          path={ROUTES.INVENTORY}
-          element={
-            <PrivateRoute
-              component={() => <Inventory data={InventoryData} />}
-            />
-          }
-        />
-        <Route
-          path={ROUTES.INVENTORY_LONG}
-          element={
-            <PrivateRoute
-              component={() => <Inventory data={InventoryDataLong} />}
-            />
-          }
-        />
-        <Route
-          path={ROUTES.INVENTORY_LIST}
-          element={<PrivateRoute component={InventoryItem} />}
-        />
-        <Route
-          path={ROUTES.CART}
-          element={<PrivateRoute component={Cart} />}
-        />
-        <Route
-          path={ROUTES.CHECKOUT_STEP_ONE}
-          element={<PrivateRoute component={CheckOutStepOne} />}
-        />
-        <Route
-          path={ROUTES.CHECKOUT_STEP_TWO}
-          element={<PrivateRoute component={CheckOutStepTwo} />}
-        />
-        <Route
-          path={ROUTES.CHECKOUT_COMPLETE}
-          element={<PrivateRoute component={Finish} />}
-        />
-        <Route
-          path={ROUTES.DYNAMIC_CATALOG_LAZY_LOAD}
-          element={<PrivateRoute component={DynamicCatalogLazyLoad} />}
-        />
-        <Route
-          path={ROUTES.DYNAMIC_CATALOG_SPINNER}
-          element={<PrivateRoute component={DynamicCatalogSpinner} />}
-        />
-        <Route
-          path={ROUTES.DYNAMIC_CATALOG_SLIDER}
-          element={<PrivateRoute component={DynamicCatalogSlider} />}
-        />
-      </Routes>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <Routes>
+          <Route path={ROUTES.LOGIN} element={<Login />} />
+          <Route
+            path={ROUTES.INVENTORY}
+            element={
+              <PrivateRoute
+                component={() => <Inventory data={InventoryData} />}
+              />
+            }
+          />
+          <Route
+            path={ROUTES.INVENTORY_LONG}
+            element={
+              <PrivateRoute
+                component={() => <Inventory data={InventoryDataLong} />}
+              />
+            }
+          />
+          <Route
+            path={ROUTES.INVENTORY_LIST}
+            element={<PrivateRoute component={InventoryItem} />}
+          />
+          <Route
+            path={ROUTES.CART}
+            element={<PrivateRoute component={Cart} />}
+          />
+          <Route
+            path={ROUTES.CHECKOUT_STEP_ONE}
+            element={<PrivateRoute component={CheckOutStepOne} />}
+          />
+          <Route
+            path={ROUTES.CHECKOUT_STEP_TWO}
+            element={<PrivateRoute component={CheckOutStepTwo} />}
+          />
+          <Route
+            path={ROUTES.CHECKOUT_COMPLETE}
+            element={<PrivateRoute component={Finish} />}
+          />
+          <Route
+            path={ROUTES.DYNAMIC_CATALOG_LAZY_LOAD}
+            element={<PrivateRoute component={DynamicCatalogLazyLoad} />}
+          />
+          <Route
+            path={ROUTES.DYNAMIC_CATALOG_SPINNER}
+            element={<PrivateRoute component={DynamicCatalogSpinner} />}
+          />
+          <Route
+            path={ROUTES.DYNAMIC_CATALOG_SLIDER}
+            element={<PrivateRoute component={DynamicCatalogSlider} />}
+          />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   </ErrorBoundary>
 );
 

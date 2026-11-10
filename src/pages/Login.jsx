@@ -12,17 +12,20 @@ import InputError, { INPUT_TYPES } from "../components/InputError";
 import SubmitButton from "../components/SubmitButton";
 import ErrorMessage from "../components/ErrorMessage";
 import { BacktraceClient } from "@backtrace/react";
+import LanguageToggle from "../components/LanguageToggle";
+import { useTranslation } from "../i18n/LanguageContext";
 
 function Login(props) {
   const { history, location } = props;
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (location.state) {
       return setError(
-        `You can only access '${location.state.from.pathname}' when you are logged in.`,
+        t("login.protectedRoute", { path: location.state.from.pathname }),
       );
     }
   }, [location.state]);
@@ -34,11 +37,11 @@ function Login(props) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (!username) {
-      return setError("Username is required");
+      return setError(t("login.usernameRequired"));
     }
 
     if (!password) {
-      return setError("Password is required");
+      return setError(t("login.passwordRequired"));
     }
 
     if (verifyCredentials(username, password)) {
@@ -52,7 +55,7 @@ function Login(props) {
           new Error("Locked out user tried to log in."),
           { username },
         );
-        return setError("Sorry, this user has been locked out.");
+        return setError(t("login.lockedOut"));
       }
 
       // Redirect!
@@ -63,9 +66,7 @@ function Login(props) {
         "Someone tried to login with invalid credentials.",
         { username },
       );
-      return setError(
-        "Username and password do not match any user in this service",
-      );
+      return setError(t("login.invalidCredentials"));
     }
 
     return "";
@@ -82,19 +83,22 @@ function Login(props) {
   return (
     <div className="login_container">
       <div className="login_logo">Swag Labs</div>
+      <div className="login_language_toggle">
+        <LanguageToggle />
+      </div>
 
       <div className="login_wrapper" data-test="login-container" role="main">
         <div className="login_wrapper-inner">
           <div id="login_button_container" className="form_column">
             <div className="login-box">
-              <form onSubmit={handleSubmit} aria-label="Login">
+              <form onSubmit={handleSubmit} aria-label={t("login.submit")}>
                 <InputError
                   isError={Boolean(error)}
                   type={INPUT_TYPES.TEXT}
                   value={username}
                   onChange={handleUserChange}
                   testId="username"
-                  placeholder="Username"
+                  placeholder={t("login.username")}
                   // Custom
                   id="user-name"
                   name="user-name"
@@ -107,7 +111,7 @@ function Login(props) {
                   value={password}
                   onChange={handlePassChange}
                   testId="password"
-                  placeholder="Password"
+                  placeholder={t("login.password")}
                   // Custom
                   autoCorrect="off"
                   autoCapitalize="none"
@@ -122,7 +126,7 @@ function Login(props) {
                   // but is there for backwards compatibility
                   customClass="btn_action"
                   testId="login-button"
-                  value="Login"
+                  value={t("login.submit")}
                 />
               </form>
             </div>
@@ -138,7 +142,7 @@ function Login(props) {
               className="login_credentials"
               data-test="login-credentials"
             >
-              <h4>Accepted usernames are:</h4>
+              <h4>{t("login.acceptedUsers")}</h4>
               {VALID_USERNAMES.map((u, i) => (
                 <Fragment key={i}>
                   {u}
@@ -147,7 +151,7 @@ function Login(props) {
               ))}
             </div>
             <div className="login_password" data-test="login-password">
-              <h4>Password for all users:</h4>
+              <h4>{t("login.passwordForAll")}</h4>
               {VALID_PASSWORD}
             </div>
           </div>

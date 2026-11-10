@@ -156,6 +156,34 @@ exports[`Cart should render correctly for a visual user 1`] = `
             </div>
           </div>
           <div
+            class="language_toggle_container"
+          >
+            <button
+              aria-label="Switch to French"
+              class="language_toggle"
+              data-test="language-toggle"
+              title="Switch to French"
+              type="button"
+            >
+              <span
+                class="active"
+              >
+                EN
+              </span>
+              <span
+                aria-hidden="true"
+                class="language_toggle_separator"
+              >
+                /
+              </span>
+              <span
+                class=""
+              >
+                FR
+              </span>
+            </button>
+          </div>
+          <div
             class="shopping_cart_container visual_failure"
             id="shopping_cart_container"
           >
@@ -440,6 +468,34 @@ exports[`Cart should render correctly items 1`] = `
             >
               Swag Labs
             </div>
+          </div>
+          <div
+            class="language_toggle_container"
+          >
+            <button
+              aria-label="Switch to French"
+              class="language_toggle"
+              data-test="language-toggle"
+              title="Switch to French"
+              type="button"
+            >
+              <span
+                class="active"
+              >
+                EN
+              </span>
+              <span
+                aria-hidden="true"
+                class="language_toggle_separator"
+              >
+                /
+              </span>
+              <span
+                class=""
+              >
+                FR
+              </span>
+            </button>
           </div>
           <div
             class="shopping_cart_container visual_failure"
@@ -892,6 +948,34 @@ exports[`Cart should render correctly without any items 1`] = `
             >
               Swag Labs
             </div>
+          </div>
+          <div
+            class="language_toggle_container"
+          >
+            <button
+              aria-label="Switch to French"
+              class="language_toggle"
+              data-test="language-toggle"
+              title="Switch to French"
+              type="button"
+            >
+              <span
+                class="active"
+              >
+                EN
+              </span>
+              <span
+                aria-hidden="true"
+                class="language_toggle_separator"
+              >
+                /
+              </span>
+              <span
+                class=""
+              >
+                FR
+              </span>
+            </button>
           </div>
           <div
             class="shopping_cart_container"

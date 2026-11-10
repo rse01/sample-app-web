@@ -10,12 +10,14 @@ import ErrorMessage from "../components/ErrorMessage";
 import SubmitButton from "../components/SubmitButton";
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from "../components/Button";
 import "./CheckOutStepOne.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const CheckOutStepOne = ({ history }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [error, setError] = useState("");
+  const { t } = useTranslation();
   const dismissError = () => {
     setError("");
   };
@@ -40,16 +42,16 @@ const CheckOutStepOne = ({ history }) => {
     evt.preventDefault();
 
     if (!firstName) {
-      return setError("First Name is required");
+      return setError(t("checkout.firstNameRequired"));
     }
 
     // Allow to pass for error_user without lastName, as it is impossible to set (errors are thrown)
     if (!lastName && !isErrorUser()) {
-      return setError("Last Name is required");
+      return setError(t("checkout.lastNameRequired"));
     }
 
     if (!postalCode) {
-      return setError("Postal Code is required");
+      return setError(t("checkout.postalCodeRequired"));
     }
 
     // If we're here, we have our required info. Redirect!
@@ -63,7 +65,7 @@ const CheckOutStepOne = ({ history }) => {
   return (
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
-        <HeaderContainer secondaryTitle="Checkout: Your Information" />
+        <HeaderContainer secondaryTitle={t("checkout.information")} />
         <div
           id="checkout_info_container"
           className="checkout_info_container"
@@ -71,7 +73,7 @@ const CheckOutStepOne = ({ history }) => {
           role="main"
         >
           <div className="checkout_info_wrapper">
-            <form onSubmit={handleSubmit} aria-label="Checkout information">
+            <form onSubmit={handleSubmit} aria-label={t("checkout.form")}>
               <div className="checkout_info">
                 <InputError
                   isError={Boolean(error)}
@@ -79,7 +81,7 @@ const CheckOutStepOne = ({ history }) => {
                   value={firstName}
                   onChange={handleFirstNameChange}
                   testId="firstName"
-                  placeholder="First Name"
+                  placeholder={t("checkout.firstName")}
                   // Custom
                   id="first-name"
                   autoCorrect="off"
@@ -91,7 +93,7 @@ const CheckOutStepOne = ({ history }) => {
                   value={lastName}
                   onChange={handleLastNameChange}
                   testId="lastName"
-                  placeholder="Last Name"
+                  placeholder={t("checkout.lastName")}
                   // Custom
                   id="last-name"
                   autoCorrect="off"
@@ -103,7 +105,7 @@ const CheckOutStepOne = ({ history }) => {
                   value={postalCode}
                   onChange={handlePostalCodeChange}
                   testId="postalCode"
-                  placeholder="Zip/Postal Code"
+                  placeholder={t("checkout.postalCode")}
                   // Custom
                   id="postal-code"
                   autoCorrect="off"
@@ -120,7 +122,7 @@ const CheckOutStepOne = ({ history }) => {
                   // `cart_cancel_link` has no style function
                   // but is there for backwards compatibility
                   customClass="cart_cancel_link"
-                  label="Cancel"
+                  label={t("checkout.cancel")}
                   onClick={(evt) => {
                     evt.preventDefault();
                     history.push(ROUTES.CART);
@@ -132,7 +134,7 @@ const CheckOutStepOne = ({ history }) => {
                 <SubmitButton
                   customClass="btn btn_primary cart_button btn_action"
                   testId="continue"
-                  value="Continue"
+                  value={t("checkout.continue")}
                 />
               </div>
             </form>

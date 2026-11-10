@@ -11,12 +11,14 @@ import "./InventoryItem.css";
 import BrokenComponent from "../components/BrokenComponent";
 import { ErrorBoundary } from "@backtrace/react";
 import getImage from "../utils/imageLoader";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const InventoryItem = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const { history } = props;
+  const { t } = useTranslation();
   // Get our queryparams now
   const queryParams = new URLSearchParams(window.location.search);
   let inventoryId = -1;
@@ -31,12 +33,8 @@ const InventoryItem = (props) => {
     item = InventoryData[inventoryId];
   } else {
     item = {
-      name: "ITEM NOT FOUND",
-      desc: `We're sorry, but your call could not be completed as dialled.
-          Please check your number, and try your call again.
-          If you are in need of assistance, please dial 0 to be connected with an operator.
-          This is a recording.
-          4 T 1.`,
+      name: t("product.notFound"),
+      desc: t("product.notFoundDescription"),
       image_url: "sl-404.jpg",
       price: "√-1",
     };
@@ -116,7 +114,7 @@ const InventoryItem = (props) => {
    */
   /* istanbul ignore next */
   const ButtonType = ({ id, item, itemInCart }) => {
-    const label = itemInCart ? "Remove" : "Add to cart";
+    const label = itemInCart ? t("product.remove") : t("product.add");
     const onClick = itemInCart ? () => removeFromCart(id) : () => addToCart(id);
     const type = itemInCart ? BUTTON_TYPES.SECONDARY : BUTTON_TYPES.PRIMARY;
     const testId = label === "Remove" ? "remove" : "add-to-cart";
@@ -141,7 +139,7 @@ const InventoryItem = (props) => {
           secondaryLeftComponent={
             <Button
               customClass="inventory_details_back_button"
-              label="Back to products"
+              label={t("product.back")}
               onClick={goBack}
               type={BUTTON_TYPES.BACK}
               testId="back-to-products"

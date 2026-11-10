@@ -9,17 +9,19 @@ import HeaderContainer from "../components/HeaderContainer";
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from "../components/Button";
 import "./Cart.css";
 import { isVisualUser } from "../utils/Credentials";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const Cart = ({ history }) => {
   const contents = ShoppingCart.getCartContents();
   const buttonClass = `checkout_button ${
     isVisualUser() ? "btn_visual_failure" : ""
   }`;
+  const { t } = useTranslation();
 
   return (
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
-        <HeaderContainer secondaryTitle="Your Cart" />
+        <HeaderContainer secondaryTitle={t("cart.title")} />
         <div
           id="cart_contents_container"
           className="cart_contents_container"
@@ -32,10 +34,10 @@ const Cart = ({ history }) => {
                 className="cart_quantity_label"
                 data-test="cart-quantity-label"
               >
-                QTY
+                {t("cart.quantity")}
               </div>
               <div className="cart_desc_label" data-test="cart-desc-label">
-                Description
+                {t("cart.description")}
               </div>
               {contents.map((item, i) => (
                 <CartItem key={i} item={InventoryData[item]} showButton />
@@ -43,7 +45,7 @@ const Cart = ({ history }) => {
             </div>
             <div className="cart_footer">
               <Button
-                label="Continue Shopping"
+                label={t("cart.continue")}
                 onClick={(evt) => {
                   evt.preventDefault();
                   history.push(ROUTES.INVENTORY);
@@ -53,7 +55,7 @@ const Cart = ({ history }) => {
                 type={BUTTON_TYPES.BACK}
               />
               <Button
-                label="Checkout"
+                label={t("cart.checkout")}
                 // `checkout_button` has no style function
                 // but is there for backwards compatibility
                 customClass={buttonClass}

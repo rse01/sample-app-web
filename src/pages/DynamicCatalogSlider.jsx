@@ -4,11 +4,13 @@ import SwagLabsFooter from "../components/Footer";
 import DynamicCatalogItemCard from "../components/DynamicCatalogItemCard";
 import { InventoryData } from "../utils/InventoryData";
 import "./DynamicCatalogSlider.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export const SLIDER_INTERVAL_MS = 2000;
 
 const DynamicCatalogSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -23,7 +25,7 @@ const DynamicCatalogSlider = () => {
   return (
     <div id="page_wrapper" className="page_wrapper">
       <div id="contents_wrapper">
-        <HeaderContainer secondaryTitle="Dynamic Catalog - Slider" />
+        <HeaderContainer secondaryTitle={t("catalog.slider")} />
         <div
           className="dynamic_catalog_slider_container"
           data-test="dynamic-catalog-slider-container"
@@ -43,7 +45,7 @@ const DynamicCatalogSlider = () => {
                 className={`dynamic_catalog_slider_dot${
                   index === activeIndex ? " active" : ""
                 }`}
-                aria-label={`Show ${item.name}`}
+                aria-label={t("catalog.show", { name: item.name })}
                 aria-current={index === activeIndex}
                 data-test={`dynamic-catalog-slider-dot-${index}`}
                 onClick={() => setActiveIndex(index)}

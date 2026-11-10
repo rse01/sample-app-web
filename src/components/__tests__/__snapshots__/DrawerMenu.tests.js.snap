@@ -68,9 +68,9 @@ exports[`DrawerMenu should render correctly 1`] = `
             />
           </a>
           <a
-            class="bm-item menu-item"
+            aria-disabled="true"
+            class="bm-item menu-item menu-item-disabled"
             data-test="about-sidebar-link"
-            href="https://saucelabs.com/"
             id="about_sidebar_link"
             style="display: block;"
             tabindex="-1"
@@ -197,9 +197,9 @@ exports[`DrawerMenu should render correctly for a visual user 1`] = `
             />
           </a>
           <a
-            class="bm-item menu-item"
+            aria-disabled="true"
+            class="bm-item menu-item menu-item-disabled"
             data-test="about-sidebar-link"
-            href="https://saucelabs.com/"
             id="about_sidebar_link"
             style="display: block;"
             tabindex="-1"

@@ -7,6 +7,7 @@ import "./InventoryListItem.css";
 import { ROUTES } from "../utils/Constants";
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from "./Button";
 import getImage from "../utils/imageLoader";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const InventoryListItem = (props) => {
   const {
@@ -21,6 +22,7 @@ const InventoryListItem = (props) => {
   } = props;
   const [itemInCart, setItemInCart] = useState(ShoppingCart.isItemInCart(id));
   const imgSrc = getImage(image_url);
+  const { t } = useTranslation();
 
   /**
    * @TODO:
@@ -85,7 +87,7 @@ const InventoryListItem = (props) => {
    */
   /* istanbul ignore next */
   const ButtonType = ({ id, item, itemInCart, missAlignButton }) => {
-    const label = itemInCart ? "Remove" : "Add to cart";
+    const label = itemInCart ? t("product.remove") : t("product.add");
     const onClick = itemInCart ? () => removeFromCart(id) : () => addToCart(id);
     const type = itemInCart ? BUTTON_TYPES.SECONDARY : BUTTON_TYPES.PRIMARY;
     const testId = `${label}-${item}`.replace(/\s+/g, "-").toLowerCase();
@@ -119,7 +121,7 @@ const InventoryListItem = (props) => {
           }}
           data-test={`item-${id}-img-link`}
           role="button"
-          aria-label={`View details for ${name}`}
+          aria-label={t("product.details", { name })}
         >
           <img
             alt={name}
@@ -145,7 +147,7 @@ const InventoryListItem = (props) => {
             }}
             data-test={`item-${id}-title-link`}
             role="button"
-            aria-label={`View details for ${name}`}
+            aria-label={t("product.details", { name })}
           >
             <div className={itemNameClass} data-test="inventory-item-name">
               {name}

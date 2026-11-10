@@ -1,7 +1,9 @@
 import React from "react";
 import "./Footer.css";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const SwagLabsFooter = () => {
+  const { t } = useTranslation();
   return (
     <footer className="footer" data-test="footer">
       {/* <div className="footer_container"> */}
@@ -39,8 +41,7 @@ const SwagLabsFooter = () => {
       </ul>
 
       <div className="footer_copy" data-test="footer-copy">
-        &copy; {new Date().getFullYear()} Sauce Labs. All Rights Reserved. Terms
-        of Service | Privacy Policy
+        &copy; {new Date().getFullYear()} Sauce Labs. {t("footer.rights")}
       </div>
       {/* </div> */}
     </footer>

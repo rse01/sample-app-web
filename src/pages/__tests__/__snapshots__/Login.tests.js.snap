@@ -11,6 +11,34 @@ exports[`Login should render correctly 1`] = `
       Swag Labs
     </div>
     <div
+      class="login_language_toggle"
+    >
+      <button
+        aria-label="Switch to French"
+        class="language_toggle"
+        data-test="language-toggle"
+        title="Switch to French"
+        type="button"
+      >
+        <span
+          class="active"
+        >
+          EN
+        </span>
+        <span
+          aria-hidden="true"
+          class="language_toggle_separator"
+        >
+          /
+        </span>
+        <span
+          class=""
+        >
+          FR
+        </span>
+      </button>
+    </div>
+    <div
       class="login_wrapper"
       data-test="login-container"
       role="main"
